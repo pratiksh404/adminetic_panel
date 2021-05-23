@@ -16,6 +16,38 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | UI Configuration
+    |--------------------------------------------------------------------------
+    | 
+    */
+
+    // Header
+    'mega_menu' => false,
+    'level_menu' => false,
+    'language_drawer' => false,
+    'search' => false,
+    'notification' => false,
+    'quick_menu' => false,
+    'dark_light_toggle' => true,
+    'fullscreen_expander' => true,
+    'profile' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Card Setting
+    |--------------------------------------------------------------------------
+    |
+    */
+    'card' => '',
+    'card_header' => 'b-l-primary border-3',
+    'card_action_enabled' => true,
+    'card_class' => '',
+    'card_body' => 'shadow-lg',
+    'card_footer' => '',
+    'card_footer_enabled' => false,
+
+    /*
+    |--------------------------------------------------------------------------
     | Admin Dashboard Route Configurations
     |--------------------------------------------------------------------------
     | 
@@ -94,6 +126,17 @@ return [
                     'type' => 'js',
                     'active' => true,
                     'location' => 'assets/js/notify/bootstrap-notify.min.js'
+                ],
+            ]
+        ],
+        [
+            'name' => 'Card',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/custom-card/custom-card.js'
                 ],
             ]
         ],
