@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="card {{ config('adminetic.card', '') }}">
-        <div class="card-header bg-primary {{ config('adminetic.card_header', 'b-l-primary border-3') }}">
+        <div class="card-header {{ config('adminetic.card_header', 'b-l-primary border-3') }}">
             <h5>@isset($icon) <i class="{{ $icon }} me-2"></i> @endisset All {{ $plural_name ?? 'N/A' }}</h5>
             @if (config('adminetic.card_action_enabled', true))
                 <div class="card-header-right">

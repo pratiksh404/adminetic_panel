@@ -7,7 +7,7 @@
                     alt="Light Logo">
                 <img class="img-fluid for-dark"
                     src="{{ asset(isset($setting->logo_dark) ? 'storage/' . $setting->logo_dark : 'static/logo_dark.png') }}"
-                    alt="">
+                    alt="Dark Logo">
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid">

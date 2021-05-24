@@ -12,8 +12,7 @@ class IndexPage extends Component
     public $property;
     public $route;
     public $class;
-
-    protected $icon;
+    public $icon;
 
     /**
      * Create a new component instance.

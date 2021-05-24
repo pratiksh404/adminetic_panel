@@ -13,6 +13,11 @@
     {{-- End Plugin Injection --}}
     {{-- CUSTOM --}}
     <script src="{{ asset('assets/custom/custom.js') }}"></script>
+    {{-- Notifiable --}}
+    @include('admin.layouts.components.notify')
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
+    {{-- Livewire --}}
+    @livewireScripts
+    @stack('livewire_third_party')

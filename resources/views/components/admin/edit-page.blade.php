@@ -9,7 +9,8 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"> <i data-feather="home"></i></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ adminRedirectRoute($route) }}"></a></li>
+                        <li class="breadcrumb-item"><a href="{{ adminRedirectRoute($route) }}">{{ $name }}</a>
+                        </li>
                         <li class="breadcrumb-item active">Edit {{ $name }}</li>
                     </ol>
                 </div>
@@ -17,7 +18,7 @@
         </div>
     </div>
     <div class="card {{ config('adminetic.card', '') }}">
-        <div class="card-header bg-primary {{ config('adminetic.card_header', 'b-l-primary border-3') }}">
+        <div class="card-header {{ config('adminetic.card_header', 'b-l-warning border-3') }}">
             <h5>@isset($icon) <i class="{{ $icon }} me-2"></i> @endisset Edit {{ $name ?? 'N/A' }}</h5>
             @if (config('adminetic.card_action_enabled', true))
                 <div class="card-header-right">
@@ -40,7 +41,8 @@
                         input fields.</span>
                 </div>
                 <div class="col-lg-4 d-flex justify-content-end">
-                    <a href="{{ adminRedirectRoute($route) }}"><button class="btn btn-air-primary">Back</button></a>
+                    <a href="{{ adminRedirectRoute($route) }}"><button
+                            class="btn btn-primary btn-air-primary">Back</button></a>
                     @isset($buttons)
                         {{ $buttons }}
                     @endisset

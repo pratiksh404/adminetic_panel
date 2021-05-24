@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Admin;
 
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class ShowPage extends Component

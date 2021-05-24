@@ -73,3 +73,7 @@
     </div>
     <!-- Container-fluid Ends-->
 @endsection
+
+@section('custom_js')
+    @include('admin.layouts.modules.dashboard.scripts')
+@endsection

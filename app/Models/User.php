@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Profile;
+use App\Models\Admin\Role;
+use App\Traits\HasRole;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRole, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +45,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Forget cache on updating or saving and deleting
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function () {
+            self::cacheKey();
+        });
+
+        static::deleting(function () {
+            self::cacheKey();
+        });
+    }
+
+    // Cache Keys
+    private static function cacheKey()
+    {
+        Cache::has('users') ? Cache::forget('users') : '';
+    }
+
+    // Logs
+    protected static $logName = 'user';
+
+    // Relations
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
 }

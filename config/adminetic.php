@@ -48,6 +48,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Notify Configuraion
+    |--------------------------------------------------------------------------
+    | 
+    */
+    'notify_icon' => 'fa fa-bell-o',
+    'notify_type' => 'theme',
+    'notify_allow_dismiss' => true,
+    'notify_delay' => 2000,
+    'notify_showProgressbar' => true,
+    'notify_timer' => 300,
+    'notify_newest_on_top' => true,
+    'notify_mouse_over' => true,
+    'notify_spacing' => 1,
+    'notify_animate_in' => 'animated fadeInDown',
+    'notify_animate_out' => 'animated fadeOutUp',
+
+    /*
+    |--------------------------------------------------------------------------
     | Admin Dashboard Route Configurations
     |--------------------------------------------------------------------------
     | 
@@ -66,6 +84,57 @@ return [
 
     // ASSETS DEPENDENCIES INJECTION
     'plugins' => [
+        [
+            'name' => 'Datatables',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'active' => true,
+                    'location' => 'assets/css/vendors/datatables.css'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datatable/datatables/jquery.dataTables.min.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datatable/datatable-extension/dataTables.buttons.min.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datatable/datatable-extension/buttons.flash.min.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datatable/datatable-extension/jszip.min.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datatable/datatable-extension/pdfmake.min.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datatable/datatable-extension/vfs_fonts.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datatable/datatable-extension/buttons.html5.min.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datatable/datatable-extension/buttons.print.min.js'
+                ],
+            ]
+        ],
         [
             'name' => 'Icons',
             'active' => true,
@@ -115,6 +184,22 @@ return [
                     'type' => 'js',
                     'active' => true,
                     'location' => 'assets/js/scrollbar/custom.js'
+                ],
+            ]
+        ],
+        [
+            'name' => 'Select2',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'active' => true,
+                    'location' => 'assets/css/vendors/select2.css'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/select2/select2.full.min.js'
                 ],
             ]
         ],
