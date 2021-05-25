@@ -15,50 +15,59 @@
             @endif
             @if (auth()->user()->can('delete', $model) &&
     $delete)
-                <button type="button" class="btn btn-danger btn-air-danger btn-sm p-2" title="Delete"
-                    data-bs-toggle="modal" data-bs-target="#delete-{{ $model->id }}">
-                    <i class="fa fa-trash"></i>
-                </button>
+                <button class="btn btn-danger btn-air-danger btn-sm p-2" type="button" data-bs-toggle="modal"
+                    data-original-title="Delete" data-bs-target="#delete-{{ $model->id }}"><i
+                        class="fa fa-trash"></i></button>
             @endif
             {{ $buttons ?? '' }}
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="delete-{{ $model->id }}" tabindex="-1" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog  flipOutX  animated" role="document">
-            <div>
-                <button class="btn-close theme-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="animate-widget">
-                            @if ($deleteCondition)
-                                <div class="card-header bg-danger">
-                                    <h4 class="card-title">Item cannot be deleted !</h4>
-                                </div>
-                                <div class="card-body">
-                                    <p>
-                                        This item cannot be deleted yet, since it may have dependencies on other
-                                        module
-                                    </p>
-                                </div>
-                            @else
-                                <div class="card-header bg-danger">
-                                    <h4 class="card-title">Delete Item</h4>
-                                </div>
-                                <form action="{{ adminDeleteRoute(trim($route), $model->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <div class="card-body">
-                                        Are you sure you want to delete this data ?
-                                    </div>
-                                    <div class="card-footer">
-                                        <input type="submit" value="Delete" class="btn btn-danger btn-air-danger">
-                                    </div>
-                                </form>
-                            @endif
-                        </div>
+    <div class="modal fade" id="delete-{{ $model->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @if ($deleteCondition)
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="exampleModalLabel">This item cannot be deleted !</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
+                    <div class="modal-body">
+                        <p>
+                            This item cannot be deleted yet, since it may have dependencies on other
+                            module
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-air-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                @else
+                    <div class="modal-header bg-danger">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Item !</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this item.
+                        <br>
+                        <form action="{{ adminDeleteRoute(trim($route), $model->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <select name="model" id="model" class="form-control select2" style="width:100%">
+                                <option selected disabled>Select Module..</option>
+                                @foreach ($remaining_models as $model)
+                                    <option value="{{ $model }}">{{ $model }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn grey btn-outline-danger btn-air-danger"
+                            data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-danger btn-air-danger">Yes Delete It !</button>
+                    </div>
+                    </form>
+                @endif
+
             </div>
         </div>
     </div>

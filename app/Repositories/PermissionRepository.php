@@ -15,9 +15,9 @@ class PermissionRepository implements PermissionRepositoryInterface
     {
         $permissions = config('coderz.caching', true)
             ? (Cache::has('permissions') ? Cache::get('permissions') : Cache::rememberForever('permissions', function () {
-                return Permission::all();
+                return Permission::with('role')->get();
             }))
-            : Permission::all();
+            : Permission::with('role')->get();
         return compact('permissions');
     }
 

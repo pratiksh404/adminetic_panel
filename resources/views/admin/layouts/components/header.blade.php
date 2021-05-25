@@ -284,8 +284,8 @@
                 @if (config('adminetic.profile', true))
                     <li class="profile-nav onhover-dropdown p-0 me-0">
                         <div class="media profile-media">
-                            <img class="b-r-10 img-fluid" src="{{ getProfilePlaceholder() }}" alt="auth()->user->name"
-                                height="37" width="37">
+                            <img class="b-r-10 img-fluid" src="{{ getProfilePlaceholder() }}"
+                                alt="{{ auth()->user()->name }}" height="37" width="37">
                             <div class="media-body"><span>{{ Auth::user()->name }}</span>
                                 <p class="mb-0 font-roboto">
                                     {{ isset(auth()->user()->roles)

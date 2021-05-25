@@ -64,9 +64,10 @@ if (!function_exists('getFoodImagePlaceholder')) {
 }
 
 if (!function_exists('getProfilePlaceholder')) {
-    function getProfilePlaceholder()
+    function getProfilePlaceholder($p = null)
     {
-        return isset(Auth::user()->profile->profile_pic) ? asset(Auth::user()->profile->thumbnail('profile_pic', 'small')) : asset('static/profile.jpg');
+        $profile = $p ?? Auth::user()->profile;
+        return isset($profile->profile_pic) ? asset('storage/' . $profile->profile_pic) : asset('static/profile.jpg');
     }
 }
 
@@ -116,5 +117,34 @@ if (!function_exists('setting')) {
     {
         $setting =  \App\Models\Admin\Setting::first()->get();
         return $setting ?? null;
+    }
+}
+
+if (!function_exists('getCondition')) {
+    function getCondition($conditions)
+    {
+        $result = null;
+        if (!isset($conditions)) {
+            return false;
+        }
+
+        if (count($conditions) > 0) {
+            if (count($conditions) == 1) {
+                return $conditions[0]['condition'];
+            } else {
+                foreach ($conditions as $condition) {
+                    if (isset($condition['type']) && isset($condition['condition'])) {
+                        if ($condition['type'] == 'or' || $condition['type'] == 'Or' || $condition['type'] == 'OR' || $condition['type'] == '||') {
+                            $result = $result || $condition['condition'];
+                        } elseif ($condition['type'] == 'and' || $condition['type'] == 'And' || $condition['type'] == "AND" || $condition['type'] == '&&') {
+                            $result = $result && $condition['condition'];
+                        }
+                    }
+                }
+            }
+            return $result;
+        } else {
+            return false;
+        }
     }
 }

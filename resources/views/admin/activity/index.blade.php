@@ -4,14 +4,14 @@
     <x-admin.card title="All Activities">
         <x-slot name="heading_element">
         </x-slot>
-        <x-slot name="card_text">
+        <x-slot name="title">
             List of all activities in the system.
         </x-slot>
         <x-slot name="buttons">
-            <div class="btn-group mr-1 mb-1">
-                <button type="button" class="btn btn-info btn-min-width dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true">Action</button>
-                <div class="dropdown-menu">
+            <div class="btn-group" role="group">
+                <button class="btn btn-primary btn-air-primary dropdown-toggle" id="btnGroupDrop1" type="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                     <a class="dropdown-item" href="{{ adminRedirectRoute('delete-all-activities') }}">Delete
                         All</a>
                     <a class="dropdown-item" href="{{ adminRedirectRoute('delete-last-month') }}">Delete Last
@@ -28,8 +28,9 @@
                         3 Month</a>
                 </div>
             </div>
+
         </x-slot>
-        <x-slot name="card_content">
+        <x-slot name="content">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered datatable">
                     <thead>

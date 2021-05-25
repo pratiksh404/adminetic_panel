@@ -2,13 +2,14 @@
 
 namespace App\Mixins;
 
-use App\Http\Controllers\Admin\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\EditorUploadController;
 
 class AdminMixins
 {
@@ -41,7 +42,7 @@ class AdminMixins
 
                 $this->get('detach_role_module_permission/{role}/{permission}', [RoleController::class, 'detachModulePermssion']);
 
-                $this->patch('change_role_module_permission', [RoleController::class, 'changeModulePermission']);
+                $this->patch('change_role_module_permission', [RoleController::class, 'changeModulePermission'])->name('change_role_module_permission');
 
                 /* Activitiy Routes */
                 $this->get('delete-all-activities', [ActivityController::class, 'delete_all_activities']);
@@ -49,6 +50,8 @@ class AdminMixins
                 $this->get('keep-this-month-activities', [ActivityController::class, 'keep_this_month_activities']);
                 $this->get('keep-latest-two-month-activities', [ActivityController::class, 'keep_latest_two_month_activities']);
                 $this->get('keep-latest-three-month-activities', [ActivityController::class, 'keep_latest_three_month_activities']);
+                /* Editor Route */
+                $this->post('ckeditor/upload', [EditorUploadController::class, 'upload'])->name('ckeditor.upload');
             });
         };
     }

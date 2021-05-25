@@ -188,6 +188,75 @@ return [
             ]
         ],
         [
+            'name' => 'Touchspin',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/touchspin/touchspin.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/touchspin/input-groups.min.js'
+                ],
+            ]
+        ],
+        [
+            'name' => 'Datepicker',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'active' => true,
+                    'location' => 'assets/css/vendors/date-picker.css'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datepicker/date-picker/datepicker.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/datepicker/date-picker/datepicker.en.js'
+                ],
+            ]
+        ],
+        [
+            'name' => 'CKEditor',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/editor/ckeditor/ckeditor.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/editor/ckeditor/styles.js'
+                ],
+            ]
+        ],
+        [
+            'name' => 'Summernote',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'active' => true,
+                    'location' => 'assets/css/vendors/summernote.css'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/editor/summernote/summernote.js'
+                ],
+            ]
+        ],
+        [
             'name' => 'Select2',
             'active' => true,
             'files' => [

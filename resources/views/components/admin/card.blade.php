@@ -18,10 +18,8 @@
             @endif
             <br>
             <div class="row">
-                <div class="col-lg-8">
-                    {{ $description ?? '' }}
-                </div>
-                <div class="col-lg-4 d-flex justify-content-end">
+                {{ $description ?? '' }}
+                <div class="d-flex justify-content-end">
                     @isset($buttons)
                         {{ $buttons }}
                     @endisset

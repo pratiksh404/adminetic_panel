@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <x-admin.index-admin.page name="role" route="role">
+    <x-admin.index-page name="role" route="role">
         <x-slot name="content">
             {{-- ================================Card================================ --}}
             <table class="table table-striped table-bordered datatable">
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th>ID</th>
                         <th>Role</th>
                         <th>Level</th>
                         <th>Actions</th>
@@ -23,8 +23,9 @@
                                 <td>
                                     <x-admin.action :model="$role" route="role">
                                         <x-slot name="buttons">
-                                            <a href="{{ adminShowRoute('role', $role->id) }}" class="btn btn-info btn-sm"
-                                                data-toggle="tooltip" placement="top" title="Role's Permissions"><i
+                                            <a href="{{ adminShowRoute('role', $role->id) }}"
+                                                class="btn btn-info btn-air-info btn-sm p-2" data-toggle="tooltip"
+                                                placement="top" title="Role's Permissions"><i
                                                     class="feather icon-unlock"></i></a>
                                         </x-slot>
                                     </x-admin.action>
@@ -35,7 +36,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>id</th>
+                        <th>ID</th>
                         <th>Role</th>
                         <th>Level</th>
                         <th>Actions</th>
@@ -44,7 +45,7 @@
             </table>
             {{-- =================================================================== --}}
         </x-slot>
-    </x-admin.index-admin.page>
+    </x-admin.index-page>
 @endsection
 
 @section('custom_js')

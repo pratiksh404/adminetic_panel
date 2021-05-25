@@ -35,12 +35,12 @@
             @endif
             <br>
             <div class="row">
-                <div class="col-lg-8">
-                    {{ $description ?? 'Edit ' . $name . ' in the system' }} <br>
-                    <span class="text-secondary">The field labels marked with * are required
-                        input fields.</span>
-                </div>
-                <div class="col-lg-4 d-flex justify-content-end">
+                {{ $description ?? 'Edit ' . $name . ' in the system' }} <br>
+                <span class="text-secondary">The field labels marked with * are required
+                    input fields.</span>
+                <div class="d-flex justify-content-end">
+                    <a href="{{ adminEditRoute($route, $model->id) }}"><button
+                            class="btn btn-warning btn-air-warning">Edit</button></a>
                     <a href="{{ adminRedirectRoute($route) }}"><button
                             class="btn btn-primary btn-air-primary">Back</button></a>
                     @isset($buttons)

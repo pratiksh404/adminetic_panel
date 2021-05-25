@@ -33,10 +33,8 @@
             @endif
             <br>
             <div class="row">
-                <div class="col-lg-8">
-                    {{ $description ?? 'List of all ' . $plural_name . ' in the system' }}
-                </div>
-                <div class="col-lg-4 d-flex justify-content-end">
+                {{ $description ?? 'List of all ' . $plural_name . ' in the system' }}
+                <div class="d-flex justify-content-end">
                     <a href="{{ adminCreateRoute($route) }}" class="btn btn-primary">Create
                         {{ $name ?? '' }}</a>
                     @isset($buttons)

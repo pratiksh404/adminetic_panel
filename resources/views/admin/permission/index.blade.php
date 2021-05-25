@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <x-admin.index-admin.page name="permission" route="permission">
+    <x-admin.index-page name="permission" route="permission">
         <x-slot name="content">
             {{-- ================================Card================================ --}}
             <table class="table table-striped table-bordered datatable">
@@ -25,24 +25,24 @@
                         <tr>
                             <td>{{ $permission->id }}</td>
                             <td>
-                                <i
-                                    class="feather icon-user-{{ $permission->browse ? 'check' : 'x' }} text-{{ $permission->browse ? 'success' : 'danger' }}"></i>
+                                <i data-feather="user-{{ $permission->browse ? 'check' : 'x' }}"
+                                    class="text-{{ $permission->browse ? 'success' : 'danger' }}"></i>
                             </td>
                             <td>
-                                <i
-                                    class="feather icon-user-{{ $permission->read ? 'check' : 'x' }} text-{{ $permission->read ? 'success' : 'danger' }}"></i>
+                                <i data-feather="user-{{ $permission->read ? 'check' : 'x' }}"
+                                    class="text-{{ $permission->read ? 'success' : 'danger' }}"></i>
                             </td>
                             <td>
-                                <i
-                                    class="feather icon-user-{{ $permission->edit ? 'check' : 'x' }} text-{{ $permission->edit ? 'success' : 'danger' }}"></i>
+                                <i data-feather="user-{{ $permission->edit ? 'check' : 'x' }}"
+                                    class="text-{{ $permission->edit ? 'success' : 'danger' }}"></i>
                             </td>
                             <td>
-                                <i
-                                    class="feather icon-user-{{ $permission->add ? 'check' : 'x' }} text-{{ $permission->add ? 'success' : 'danger' }}"></i>
+                                <i data-feather="user-{{ $permission->add ? 'check' : 'x' }}"
+                                    class="text-{{ $permission->add ? 'success' : 'danger' }}"></i>
                             </td>
                             <td>
-                                <i
-                                    class="feather icon-user-{{ $permission->delete ? 'check' : 'x' }} text-{{ $permission->delete ? 'success' : 'danger' }}"></i>
+                                <i data-feather="user-{{ $permission->delete ? 'check' : 'x' }}"
+                                    class="text-{{ $permission->delete ? 'success' : 'danger' }}"></i>
                             </td>
                             <td>
                                 {{ $permission->role->name ?? '' }}
@@ -78,7 +78,7 @@
             </table>
             {{-- =================================================================== --}}
         </x-slot>
-    </x-admin.index-admin.page>
+    </x-admin.index-page>
 @endsection
 
 @section('custom_js')

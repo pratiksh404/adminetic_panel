@@ -15,6 +15,10 @@
     <script src="{{ asset('assets/custom/custom.js') }}"></script>
     {{-- Notifiable --}}
     @include('admin.layouts.components.notify')
+    {{-- CKEditor --}}
+    @include('admin.layouts.assets.ckeditor')
+    {{-- Inline Custom --}}
+    @yield('custom_js')
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>

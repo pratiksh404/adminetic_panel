@@ -35,12 +35,10 @@
             @endif
             <br>
             <div class="row">
-                <div class="col-lg-8">
-                    {{ $description ?? 'Create ' . $name . ' in the system' }} <br>
-                    <span class="text-secondary">The field labels marked with * are required
-                        input fields.</span>
-                </div>
-                <div class="col-lg-4 d-flex justify-content-end">
+                {{ $description ?? 'Create ' . $name . ' in the system' }} <br>
+                <span class="text-secondary">The field labels marked with * are required
+                    input fields.</span>
+                <div class="d-flex justify-content-end">
                     <a href="{{ adminRedirectRoute($route) }}"><button
                             class="btn btn-primary btn-air-primary">Back</button></a>
                     @isset($buttons)

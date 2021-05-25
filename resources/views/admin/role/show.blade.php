@@ -2,10 +2,10 @@
 
 @section('content')
     <x-admin.show-page name="role" route="role" :model="$role">
-        <x-slot name="card_text">All Permissions of {{ $role->name }}</x-slot>
+        <x-slot name="description">All Permissions of {{ $role->name }}</x-slot>
         <x-slot name="buttons">
-            <button class="btn btn-success m-1" data-toggle="modal" data-target="#make_role_permission">Create Module
-                Permission</button>
+            <button class="btn btn-secondary btn-air-secondary" type="button" data-bs-toggle="modal"
+                data-original-title="test" data-bs-target="#create_module_permission">Create Module Permission</button>
         </x-slot>
         <x-slot name="content">
             {{-- ================================Form================================ --}}
@@ -64,7 +64,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ adminUpdateRoute('detach_role_module_permission', $role->id . '/' . $permission->id) }}"
-                                            class="btn btn-danger btn-sm" value=""><i class="fa fa-trash"></i></a>
+                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -73,40 +73,43 @@
                 </div>
             </div>
             {{-- =================================================================== --}}
+
+            <!-- Modal -->
+            <div class="modal fade" id="create_module_permission" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-secondary">
+                            <h5 class="modal-title" id="exampleModalLabel">Create Role Permission</h5>
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Select Module for making BREAD Permission.
+                            <br>
+                            <form action="{{ adminUpdateRoute('make_role_module_permission', $role->id) }}"
+                                method="POST">
+                                @csrf
+                                <select name="model" id="model" class="form-control modules" style="width:100%">
+                                    <option selected disabled>Select Module..</option>
+                                    @foreach ($remaining_models as $model)
+                                        <option value="{{ $model }}">{{ $model }}</option>
+                                    @endforeach
+                                </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-danger btn-air-danger"
+                                data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-secondary btn-air-secondary">Make
+                                Permission</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </x-slot>
     </x-admin.show-page>
 
-    <!-- Modal -->
-    <div class="modal fade text-left" id="make_role_permission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-primary white">
-                    <h4 class="modal-title" id="myModalLabel10">Create Module Permission</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Select Module for making BREAD Permission.
-                    <br>
-                    <form action="{{ adminUpdateRoute('make_role_module_permission', $role->id) }}" method="POST">
-                        @csrf
-                        <select name="model" id="model" class="form-control select2" style="width:100%">
-                            <option selected disabled>Select Module..</option>
-                            @foreach ($remaining_models as $model)
-                                <option value="{{ $model }}">{{ $model }}</option>
-                            @endforeach
-                        </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-primary">Make Permission</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('custom_js')
