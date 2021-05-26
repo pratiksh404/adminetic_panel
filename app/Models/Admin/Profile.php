@@ -20,25 +20,18 @@ class Profile extends Model
     // Accessors
     public function getStatusAttribute($attribute)
     {
-        return [
+        return isset($this->status) ? [
             1 => 'Active',
             2 => 'Inactive',
             3 => 'Blocked'
-        ][$attribute];
+        ][$attribute] : null;
     }
 
-    public function getGenderAttribute($attribute)
-    {
-        return [
-            1 => 'Male',
-            2 => 'Female',
-            3 => 'Other'
-        ][$attribute];
-    }
+
 
     public function getBloodGroupAttribute($attribute)
     {
-        return [
+        return isset($this->blood_group) ? [
             1 => 'A',
             2 => 'B',
             3 => 'A+',
@@ -47,17 +40,17 @@ class Profile extends Model
             6 => 'AB+',
             7 => 'O+',
             8 => 'O-',
-        ][$attribute];
+        ][$attribute] : null;
     }
 
     public function getMartialStatusAttribute($attribute)
     {
-        return [
+        return isset($this->martial_status) ? [
             1 => 'Married',
             2 => 'Unmarried',
             3 => 'Divorced',
             4 => 'Widowed',
-        ][$attribute];
+        ][$attribute] : null;
     }
 
     // Relation

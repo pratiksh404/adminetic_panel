@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\EditorUploadController;
+use App\Http\Controllers\Admin\SettingController;
 
 class AdminMixins
 {
@@ -34,6 +35,8 @@ class AdminMixins
                 $this->resource('role', RoleController::class);
 
                 $this->resource('permission', PermissionController::class);
+
+                $this->resource('setting', SettingController::class);
 
 
                 /* ================================================= */

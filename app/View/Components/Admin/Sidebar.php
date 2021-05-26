@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
+use Route;
+
 class Sidebar extends Component
 {
     /**
@@ -23,7 +25,7 @@ class Sidebar extends Component
         $menus = [
             [
                 'type' => 'breaker',
-                'name' => 'Dashboard',
+                'name' => 'General',
                 'description' => 'Administration Control',
             ],
             [
@@ -31,6 +33,7 @@ class Sidebar extends Component
                 'name' => 'Dashboard',
                 'icon' => 'fa fa-home',
                 'link' => route('home'),
+                'is_active' => request()->routeIs('home') ? 'active' : '',
                 'conditions' => [
                     [
                         'type' => 'and',
@@ -42,6 +45,11 @@ class Sidebar extends Component
                 'type' => 'menu',
                 'name' => 'User Management',
                 'icon' => 'fa fa-users',
+                'is_active' => request()->routeIs('user*') ? 'active' : '',
+                'pill' => [
+                    'is_active' => 'badge badge-info badge-air-info',
+                    'value' => \App\Models\User::count()
+                ],
                 'conditions' => [
                     [
                         'type' => 'or',
@@ -58,6 +66,7 @@ class Sidebar extends Component
                 'type' => 'menu',
                 'name' => 'Role',
                 'icon' => 'fa fa-black-tie',
+                'is_active' => request()->routeIs('role*') ? 'active' : '',
                 'conditions' => [
                     [
                         'type' => 'or',
@@ -74,6 +83,7 @@ class Sidebar extends Component
                 'type' => 'menu',
                 'name' => 'Permission',
                 'icon' => 'fa fa-check',
+                'is_active' => request()->routeIs('permission*') ? 'active' : '',
                 'conditions' => [
                     [
                         'type' => 'or',
@@ -87,9 +97,27 @@ class Sidebar extends Component
                 'children' => $this->indexCreateChildren('permission')
             ],
             [
+                'type' => 'menu',
+                'name' => 'Setting',
+                'icon' => 'fa fa-cog',
+                'is_active' => request()->routeIs('setting*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', \App\Models\Setting::class)
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', \App\Models\Setting::class)
+                    ]
+                ],
+                'children' => $this->indexCreateChildren('setting')
+            ],
+            [
                 'type' => 'link',
                 'name' => 'Activities',
                 'icon' => 'fa fa-book',
+                'is_active' => request()->routeIs('activity*') ? 'active' : '',
                 'link' => adminRedirectRoute('activity'),
                 'conditions' => [
                     [
@@ -112,6 +140,7 @@ class Sidebar extends Component
             [
                 'type' => 'submenu',
                 'name' => 'All ' . $plural,
+                'is_active' => request()->routeIs($route . '.index') ? 'active' : '',
                 'link' => adminRedirectRoute($route),
                 'conditions' => [
                     [
@@ -123,6 +152,7 @@ class Sidebar extends Component
             [
                 'type' => 'submenu',
                 'name' => 'Create ' . $route,
+                'is_active' => request()->routeIs($route . '.create') ? 'active' : '',
                 'link' => adminCreateRoute($route),
                 'conditions' => [
                     [

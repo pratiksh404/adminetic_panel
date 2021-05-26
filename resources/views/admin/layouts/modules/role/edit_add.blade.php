@@ -18,5 +18,6 @@
     </div>
 </div>
 <hr>
-<input type="submit" class="btn btn-{{ isset($role) ? 'warning' : 'primary' }}"
+<input type="submit"
+    class="btn btn-{{ isset($role) ? 'warning' : 'primary' }} btn-air-{{ isset($role) ? 'warning' : 'primary' }}"
     value="{{ isset($role) ? 'Edit Role' : 'Add Role' }}">

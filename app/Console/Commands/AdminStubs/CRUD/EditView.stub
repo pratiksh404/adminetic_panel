@@ -4,12 +4,12 @@
 <x-admin.edit-page name="{{modelNameSinglularLowerCase}}" route="{{modelNameSinglularLowerCase}}" :model="${{modelNameSinglularLowerCase}}">
     <x-slot name="content">
         {{-- ================================Form================================ --}}
-        @include('admin.layouts.module.{{modelNameSinglularLowerCase}}.edit_add')
+        @include('admin.layouts.modules.{{modelNameSinglularLowerCase}}.edit_add')
         {{-- =================================================================== --}}
     </x-slot>
 </x-admin.edit-page>
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.module.{{modelNameSinglularLowerCase}}.scripts')
+@include('admin.layouts.modules.{{modelNameSinglularLowerCase}}.scripts')
 @endsection

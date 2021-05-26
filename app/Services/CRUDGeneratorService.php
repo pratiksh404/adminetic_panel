@@ -70,7 +70,7 @@ class CRUDGeneratorService
             mkdir($path, 0777, true);
         }
 
-        if (!file_exists($path = resource_path('views/admin/layouts/module/' . $lowername))) {
+        if (!file_exists($path = resource_path('views/admin/layouts/modules/' . $lowername))) {
             mkdir($path, 0777, true);
         }
 
@@ -138,12 +138,12 @@ class CRUDGeneratorService
     // Make Layout Blades
     protected static function createLayoutBlades($lowername, $console)
     {
-        $edit_add_file = resource_path("views/admin/layouts/module/{$lowername}/edit_add.blade.php");
-        file_put_contents(resource_path("views/admin/layouts/module/{$lowername}/edit_add.blade.php"), '');
+        $edit_add_file = resource_path("views/admin/layouts/modules/{$lowername}/edit_add.blade.php");
+        file_put_contents(resource_path("views/admin/layouts/modules/{$lowername}/edit_add.blade.php"), '');
         self::fileMadeSuccess($console, $edit_add_file, "Edit add extended file");
 
-        $script_file = resource_path("views/admin/layouts/module/{$lowername}/scripts.blade.php");
-        file_put_contents(resource_path("views/admin/layouts/module/{$lowername}/scripts.blade.php"), '');
+        $script_file = resource_path("views/admin/layouts/modules/{$lowername}/scripts.blade.php");
+        file_put_contents(resource_path("views/admin/layouts/modules/{$lowername}/scripts.blade.php"), '');
         self::fileMadeSuccess($console, $script_file, "Script file");
     }
 

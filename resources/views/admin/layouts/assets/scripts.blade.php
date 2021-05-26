@@ -21,7 +21,7 @@
     @yield('custom_js')
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
+    @include('admin.layouts.assets.customizer')
     {{-- Livewire --}}
     @livewireScripts
     @stack('livewire_third_party')

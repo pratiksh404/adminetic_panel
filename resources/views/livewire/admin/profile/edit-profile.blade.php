@@ -223,7 +223,6 @@
                 Livewire.on('initializeProfile', function() {
                     initializeProfile();
                 });
-
                 Livewire.on('profile_updated', function() {
                     var notify_allow_dismiss = Boolean(
                         {{ config('adminetic.notify_allow_dismiss', true) }});
@@ -267,7 +266,6 @@
                         tags: true,
                         tokenSeparators: [',', ' ']
                     });
-
                     // Select Year
                     $('#birthday').datepicker({
                         language: 'en',
@@ -277,9 +275,7 @@
                             @this.set('birthday', birthday);
                         }
                     });
-
                     $("#birthday").datepicker("setDate", "{{ $birthday }}");
-
                     $('#country').on('change', function() {
                         var data = $('#country').select2("val");
                         @this.set('country', data);

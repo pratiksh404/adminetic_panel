@@ -273,6 +273,22 @@ return [
             ]
         ],
         [
+            'name' => 'ACE Editor',
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/editor/ace-editor/ace.js'
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'assets/js/editor/ace-editor/mode-html.js'
+                ],
+            ]
+        ],
+        [
             'name' => 'Notify',
             'active' => true,
             'files' => [
