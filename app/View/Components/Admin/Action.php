@@ -23,7 +23,7 @@ class Action extends Component
      *
      * @return void
      */
-    public function __construct($model, $route, $show = true, $edit = true, $delete = true, $deleteCondition = true)
+    public function __construct($model, $route, $show = true, $edit = true, $delete = true, $deleteCondition = false)
     {
         $this->model = $model;
         $this->route = $route;

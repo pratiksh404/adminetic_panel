@@ -40,7 +40,7 @@
                     input fields.</span>
                 <div class="d-flex justify-content-end">
                     <a href="{{ adminCreateRoute($route, $model->id) }}"><button
-                            class="btn btn-success btn-air-success">Edit</button></a>
+                            class="btn btn-success btn-air-success">Create</button></a>
                     <a href="{{ adminRedirectRoute($route) }}"><button
                             class="btn btn-primary btn-air-primary">Back</button></a>
                     @isset($buttons)

@@ -126,6 +126,48 @@ class Sidebar extends Component
                     ]
                 ]
             ],
+            [
+                'type' => 'breaker',
+                'name' => 'DEV TOOLS',
+                'description' => 'Development Environment',
+            ],
+            [
+                'type' => 'menu',
+                'name' => 'Builder',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => env('APP_ENV') == 'local'
+                    ],
+                ],
+                'children' => [
+                    [
+                        'type' => 'submenu',
+                        'name' => 'Form Builder 1',
+                        'link' => asset('cuba/html/theme/form-builder-1.html'),
+                    ],
+                    [
+                        'type' => 'submenu',
+                        'name' => 'Form Builder 2',
+                        'link' => asset('cuba/html/theme/form-builder-2.html'),
+                    ],
+                    [
+                        'type' => 'submenu',
+                        'name' => 'Page Builder',
+                        'link' => asset('cuba/html/theme/page-builder.html'),
+                    ],
+                    [
+                        'type' => 'submenu',
+                        'name' => 'Buttom Builder',
+                        'link' => asset('cuba/html/theme/buttom-builder.html'),
+                    ],
+                ]
+            ],
+            [
+                'type' => 'link',
+                'name' => 'Documentation',
+                'link' => asset('cuba/documentation/index.html'),
+            ],
         ];
 
         return $menus;

@@ -54,6 +54,9 @@ class AdminServiceProvider extends ServiceProvider
             }
             return $hasAccess;
         });
+        Blade::directive('setting', function ($setting_name) {
+            return "<?php echo setting($setting_name) ?>";
+        });
     }
 
     // Repository Interface Binding

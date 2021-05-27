@@ -55,6 +55,8 @@ class AdminMixins
                 $this->get('keep-latest-three-month-activities', [ActivityController::class, 'keep_latest_three_month_activities']);
                 /* Editor Route */
                 $this->post('ckeditor/upload', [EditorUploadController::class, 'upload'])->name('ckeditor.upload');
+                /* Setting Store */
+                $this->post('setting-store', [SettingController::class, 'setting_store'])->name('setting_store');
             });
         };
     }

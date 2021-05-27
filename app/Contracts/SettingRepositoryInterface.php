@@ -2,6 +2,7 @@
 
 namespace App\Contracts;
 
+use Illuminate\Http\Request;
 use App\Models\Admin\Setting;
 use App\Http\Requests\SettingRequest;
 
@@ -20,4 +21,6 @@ interface SettingRepositoryInterface
     public function updateSetting(SettingRequest $request, Setting $Setting);
 
     public function destroySetting(Setting $Setting);
+
+    public function setting_store(Request $request);
 }

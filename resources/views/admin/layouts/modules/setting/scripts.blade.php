@@ -8,6 +8,18 @@
             "info": true,
         });
 
+        $('.tagging').select2({
+            dropdownAutoWidth: true,
+            tags: true,
+            tokenSeparators: [',', ' ']
+        });
+
+        $(document).ready(function() {
+            var setting_custom = $('#setting_custom').data('setting_custom');
+            var editor = ace.edit("editor");
+            editor.session.setValue(JSON.stringify(setting_custom, null, 4))
+        });
+
 
         var editor = ace.edit("editor");
         editor.getSession().setMode("ace/mode/json");
@@ -41,13 +53,10 @@
                     '{"class" : "my_class","id" : "my_id", "checked" : "1", "options" : { "1" : "Option 1", "2" : "Option 2" }}';
             } else if (setting_type == 7) {
                 var customize_json =
-                    '{"class" : "my_class","id" : "my_id", "checked" : "1","default" : "1", "options" : { "1" : "option 1", "2" : "option 2" }}';
-            } else if (setting_type == 7) {
-                var customize_json =
-                    '{"class" : "my_class","id" : "my_id", ,"default" : "1", "options" : { "1" : "option 1", "2" : "option 2" }}';
+                    '{"class" : "my_class","id" : "my_id", "default" : "1", "options" : { "1" : "option 1", "2" : "option 2" }}';
             } else if (setting_type == 8) {
                 var customize_json =
-                    '{"class" : "my_class","id" : "my_id", ,"default" : {"1","2"}, "options" : { "1" : "option 1", "2" : "option 2" }}';
+                    '{"class" : "my_class","id" : "my_id", "options" : { "1" : "option 1", "2" : "option 2" }}';
             } else if (setting_type == 9) {
                 var customize_json =
                     '{"class" : "my_class","id" : "my_id"}';
@@ -66,3 +75,23 @@
     });
 
 </script>
+
+@isset($setting_grouped)
+    @foreach ($setting_grouped as $group)
+        @foreach ($group as $setting)
+            @if ($setting->getRawOriginal('setting_type') == 4)
+                <script>
+                    // Heavy Text Editor
+                    CKEDITOR.replace("{{ $setting->setting_name }}", {
+                        filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+                        filebrowserUploadMethod: 'form',
+                        embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
+                        width: '100%'
+                    });
+
+                </script>
+            @endif
+        @endforeach
+    @endforeach
+
+@endisset

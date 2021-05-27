@@ -97,4 +97,15 @@ class SettingController extends Controller
         $this->settingRepositoryInterface->destroySetting($setting);
         return redirect(adminRedirectRoute('setting'))->withFail('Setting Deleted Successfully.');
     }
+
+    /**
+     *
+     * Setting Store
+     *
+     */
+    public function setting_store(Request $request)
+    {
+        $this->settingRepositoryInterface->setting_store($request);
+        return redirect(adminRedirectRoute('setting'))->withInfo('Settings Saved !.');
+    }
 }

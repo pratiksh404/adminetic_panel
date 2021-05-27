@@ -53,17 +53,12 @@
                         <form action="{{ adminDeleteRoute(trim($route), $model->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <select name="model" id="model" class="form-control select2" style="width:100%">
-                                <option selected disabled>Select Module..</option>
-                                @foreach ($remaining_models as $model)
-                                    <option value="{{ $model }}">{{ $model }}</option>
-                                @endforeach
-                            </select>
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn grey btn-outline-danger btn-air-danger"
+                        <button type="button" class="btn grey btn-danger btn-air-danger"
                             data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-outline-danger btn-air-danger">Yes Delete It !</button>
+                        <button type="submit" class="btn btn-danger btn-air-danger">Yes Delete It !</button>
                     </div>
                     </form>
                 @endif

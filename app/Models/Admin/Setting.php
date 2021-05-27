@@ -36,13 +36,34 @@ class Setting extends Model
     // Logs
     protected static $logName = 'setting';
 
+    // Casts
+    public $casts = [
+        'setting_custom' => 'array',
+        'setting_json' => 'array'
+    ];
+
+    // Appends
+    public $appends = ['custom', 'value'];
+
     // Mutators
+    public function setSettingNameAttribute($value)
+    {
+        $this->attributes['setting_name'] = strtolower(str_replace(' ', '_', $value));
+    }
+    public function setSettingGroupAttribute($value)
+    {
+        $this->attributes['setting_group'] = strtolower(str_replace(' ', '_', $value));
+    }
+
+    // Accessors
+    public function getSettingNameAttribute($value)
+    {
+        return ucwords(str_replace('_', ' ', $value));
+    }
     public function getSettingGroupAttribute($value)
     {
         return ucwords(str_replace('_', ' ', $value));
     }
-
-    // Accessors
     public function getSettingTypeAttribute($attribute)
     {
         return [
@@ -57,5 +78,25 @@ class Setting extends Model
             9 => 'tag',
             10 => 'image',
         ][$attribute];
+    }
+    public function getCustomAttribute()
+    {
+        return isset($this->setting_custom) ? json_decode($this->setting_custom) : null;
+    }
+    public function getValueAttribute()
+    {
+        if ($this->getRawOriginal('setting_type') == 1 || $this->getRawOriginal('setting_type') == 10) {
+            return $this->string_value;
+        } else if ($this->getRawOriginal('setting_type') == 2 || $this->getRawOriginal('setting_type') == 6 || $this->getRawOriginal('setting_type') == 7) {
+            return $this->integer_value;
+        } else if ($this->getRawOriginal('setting_type') == 3 || $this->getRawOriginal('setting_type') == 4) {
+            return $this->text_value;
+        } else if ($this->getRawOriginal('setting_type') == 5) {
+            return $this->boolean_value;
+        } else if ($this->getRawOriginal('setting_type') == 8 || $this->getRawOriginal('setting_type') == 9) {
+            return $this->setting_json;
+        } else {
+            return null;
+        }
     }
 }

@@ -23,9 +23,9 @@ class SettingRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        if (request()->has('new_setting_group')) {
+        if (isset(request()->new_setting_group)) {
             $this->merge([
-                'setting_group' => request()->new_setting_group,
+                'setting_group' => strtolower(str_replace(' ', '_', request()->new_setting_group)),
             ]);
         }
     }

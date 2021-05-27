@@ -74,20 +74,20 @@ if (!function_exists('getProfilePlaceholder')) {
 if (!function_exists('getFavicon')) {
     function getFavicon()
     {
-        return isset(setting()->favicon) ? (asset('storage/' . setting()->favicon)) : 'static/favicon.png';
+        return setting('favicon') ? (asset('storage/' . setting('favicon'))) : 'static/favicon.png';
     }
 }
 if (!function_exists('getLogo')) {
     function getLogo()
     {
-        return isset(setting()->logo) ? (asset('storage/' . setting()->logo)) : 'static/logo.png';
+        return setting('logo') ? (asset('storage/' . setting('logo'))) : 'static/logo.png';
     }
 }
 
 if (!function_exists('getLogoBanner')) {
     function getLogoBanner()
     {
-        return isset(setting()->logo_banner) ? (asset('storage/' . setting()->logo_banner)) : 'static/logo_banner.jpg';
+        return setting('logo_banner') ? (asset('storage/' . setting('logo_banner'))) : 'static/logo_banner.jpg';
     }
 }
 
@@ -113,10 +113,11 @@ if (!function_exists('random_color')) {
 }
 
 if (!function_exists('setting')) {
-    function setting()
+    function setting($setting_name)
     {
-        $setting =  \App\Models\Admin\Setting::first()->get();
-        return $setting ?? null;
+        $valid_setting_name = strtolower(str_replace(' ', '_', $setting_name));
+        $setting = \App\Models\Admin\Setting::where('setting_name', $valid_setting_name)->first();
+        return isset($setting) ? $setting->value : null;
     }
 }
 

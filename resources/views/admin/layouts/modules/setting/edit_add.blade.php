@@ -76,14 +76,17 @@
         <div class="mb-3" style="position: static;">
             <label for="new_setting_group">New Setting Group</label>
             <input name="new_setting_group" class="form-control btn-square" id="new_setting_group" type="text"
-                placeholder="Enter New Setting Group" value="{{ $setting->setting_group ?? old('setting_group') }}">
+                placeholder="Enter New Setting Group"
+                value="{{ $setting->setting_group ?? old('new_setting_group') }}">
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
         <div class="mb-3" style="position: static;">
-            <label for="new_setting_group">Customization</label>
+            <label for="setting_custom">Customization</label>
+            <input type="hidden" name="setting_custom" data-setting_custom="{{ $setting->setting_custom ?? '' }}"
+                id="setting_custom">
             <div class="ace-editor" id="editor">
 
             </div>
