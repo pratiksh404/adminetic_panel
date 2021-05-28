@@ -121,6 +121,19 @@ if (!function_exists('setting')) {
     }
 }
 
+if (!function_exists('preference')) {
+    function preference($preference_name, bool $default = null)
+    {
+        $valid_preference_name = strtolower(str_replace(' ', '_', $preference_name));
+        if (auth()->check()) {
+            $preference = auth()->user()->preferences()->where('preference', $valid_preference_name)->first();
+            return isset($preference) ? $preference->pivot->enabled : ($default ?? null);
+        } else {
+            return null;
+        }
+    }
+}
+
 if (!function_exists('getCondition')) {
     function getCondition($conditions)
     {

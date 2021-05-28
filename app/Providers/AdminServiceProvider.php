@@ -56,6 +56,9 @@ class AdminServiceProvider extends ServiceProvider
             }
             return $hasAccess;
         });
+        Blade::if('preference', function ($preference_name, $default_value) {
+            return preference($preference_name, $default_value);
+        });
         Blade::directive('setting', function ($setting_name) {
             return "<?php echo setting($setting_name) ?>";
         });
