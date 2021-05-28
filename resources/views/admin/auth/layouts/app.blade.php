@@ -9,10 +9,10 @@
         content="{{ $setting->meta_description ?? config('adminetic.description', 'Laravel Adminetic Admin Panel Upgrade.') }}">
     <meta name="author" content="Pratik Shrestha">
     <link rel="icon"
-        href="{{ asset(isset($setting->favicon) ? 'storage/' . $setting->favicon : config('adminetic.favicon', 'static/favicon.png')) }}"
+        href="{{ asset(setting('favicon') ? 'storage/' . setting('favicon') : config('adminetic.favicon', 'static/favicon.png')) }}"
         type="image/x-icon">
     <link rel="shortcut icon"
-        href="{{ asset(isset($setting->favicon) ? 'storage/' . $setting->favicon : config('adminetic.favicon', 'static/favicon.png')) }}"
+        href="{{ asset(setting('favicon') ? 'storage/' . setting('favicon') : config('adminetic.favicon', 'static/favicon.png')) }}"
         type="image/x-icon">
     <title>{{ $title ?? ($setting->title ?? config('adminetic.name', 'Adminetic')) }}</title>
     {{-- ASSET LINKS --}}

@@ -47,6 +47,12 @@ $(document).ready(function() {
      *        Admin Global Select2    *
      **********************************/
     $('.select2').select2();
+    
+    $('.tag').select2({
+        dropdownAutoWidth: true,
+        tags: true,
+        tokenSeparators: [',', ' ']
+    });
     /**********************************
      *        Admin Global Simple Texteditor    *
      **********************************/

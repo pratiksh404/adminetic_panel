@@ -15,7 +15,9 @@ use App\Contracts\UserRepositoryInterface;
 use App\Repositories\PermissionRepository;
 use App\Contracts\ProfileRepositoryInterface;
 use App\Contracts\PermissionRepositoryInterface;
+use App\Contracts\PreferenceRepositoryInterface;
 use App\Contracts\SettingRepositoryInterface;
+use App\Repositories\PreferenceRepository;
 use App\Repositories\SettingRepository;
 
 class AdminServiceProvider extends ServiceProvider
@@ -67,5 +69,6 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->bind(RoleRepositoryInterface::class, RoleRepository::class);
         $this->app->bind(PermissionRepositoryInterface::class, PermissionRepository::class);
         $this->app->bind(SettingRepositoryInterface::class, SettingRepository::class);
+        $this->app->bind(PreferenceRepositoryInterface::class, PreferenceRepository::class);
     }
 }

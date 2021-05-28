@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Admin\Profile;
-use App\Models\Admin\Role;
 use App\Traits\HasRole;
+use App\Models\Admin\Role;
+use App\Models\Admin\Profile;
+use App\Traits\HasPreference;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasRole, LogsActivity;
+    use HasFactory, Notifiable, HasRole, HasPreference, LogsActivity;
 
     /**
      * The attributes that are mass assignable.

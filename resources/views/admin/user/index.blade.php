@@ -24,9 +24,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->roles->first()->name ?? 'N/A' }}</td>
-                                <td><span
-                                        class="badge badge-{{ $user->profile->status == 'Active' ? 'success' : ($user->profile->status == 'Inactive' ? 'danger' : 'warning') }}">{{ $user->profile->status }}</span>
-                                </td>
+
                                 <td>
                                     <x-admin.action :model="$user" route="user" />
                                 </td>

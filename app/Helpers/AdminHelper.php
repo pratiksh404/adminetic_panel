@@ -113,11 +113,11 @@ if (!function_exists('random_color')) {
 }
 
 if (!function_exists('setting')) {
-    function setting($setting_name)
+    function setting($setting_name, $default = null)
     {
         $valid_setting_name = strtolower(str_replace(' ', '_', $setting_name));
         $setting = \App\Models\Admin\Setting::where('setting_name', $valid_setting_name)->first();
-        return isset($setting) ? $setting->value : null;
+        return isset($setting) ? $setting->value : ($default ?? null);
     }
 }
 

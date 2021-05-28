@@ -7,10 +7,10 @@
                     <div>
                         <a class="logo text-start" href="{{ route('home') }}">
                             <img class="img-fluid for-light"
-                                src="{{ asset(isset($setting->logo) ? 'storage/' . $setting->logo : 'static/logo.png') }}"
+                                src="{{ asset(setting('logo') ? 'storage/' . setting('logo') : 'static/logo.png') }}"
                                 alt="Light Logo">
                             <img class="img-fluid for-dark"
-                                src="{{ asset(isset($setting->logo_dark) ? 'storage/' . $setting->logo_dark : 'static/logo_dark.png') }}"
+                                src="{{ asset(setting('dark_logo') ? 'storage/' . setting('dark_logo') : 'static/logo_dark.png') }}"
                                 alt="Dark Logo">
                         </a>
                     </div>

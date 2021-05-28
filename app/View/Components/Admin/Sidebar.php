@@ -114,6 +114,23 @@ class Sidebar extends Component
                 'children' => $this->indexCreateChildren('setting')
             ],
             [
+                'type' => 'menu',
+                'name' => 'Preference',
+                'icon' => 'fa fa-wrench',
+                'is_active' => request()->routeIs('preference*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', \App\Models\Preference::class)
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', \App\Models\Preference::class)
+                    ]
+                ],
+                'children' => $this->indexCreateChildren('preference')
+            ],
+            [
                 'type' => 'link',
                 'name' => 'Activities',
                 'icon' => 'fa fa-book',

@@ -24,7 +24,7 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="delete-{{ $model->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        aria-labelledby="delete-{{ $model->id }}" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 @if ($deleteCondition)
@@ -56,8 +56,9 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn grey btn-danger btn-air-danger"
-                            data-dismiss="modal">Close</button>
+                        <button class="close btn grey btn-danger btn-air-danger" type="button" data-bs-dismiss="modal"
+                            aria-label="Close">Close </button>
+
                         <button type="submit" class="btn btn-danger btn-air-danger">Yes Delete It !</button>
                     </div>
                     </form>

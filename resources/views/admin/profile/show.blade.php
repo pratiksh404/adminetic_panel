@@ -79,6 +79,20 @@
                     </tbody>
                 </table>
             </div>
+            <br>
+            @isset($user->preferences)
+                <div class="card shadow-lg my-2 p-3">
+                    <div class="row">
+                        @foreach ($user->preferences as $preference)
+                            <div class="col-lg-6">
+                                @livewire('admin.user-preferences', ['user' =>
+                                $user,'preference' => $preference],
+                                key($preference->id))
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endisset
         </div>
         <div class="col-lg-8">
             @isset($user->roles)

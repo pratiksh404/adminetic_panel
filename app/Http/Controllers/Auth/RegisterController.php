@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Preference;
 use App\Models\Admin\Role;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -85,6 +86,23 @@ class RegisterController extends Controller
         }
         // Creating Profile
         $user->profile()->create();
+        // Creating Preference
+        $preferences = Preference::all();
+        if (isset($preferences)) {
+            foreach ($preferences as $preference) {
+                if (!isset($preference->roles)) {
+                    $user->preferences()->attach($preference->id, [
+                        'enabled' => $preference->active
+                    ]);
+                } else {
+                    if (array_intersect($user->roles->pluck('id')->toArray(), $preference->roles) != null) {
+                        $user->preferences()->attach($preference->id, [
+                            'enabled' => $preference->active
+                        ]);
+                    }
+                }
+            }
+        }
         return $user;
     }
 

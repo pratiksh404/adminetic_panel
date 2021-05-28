@@ -261,12 +261,7 @@ function translate(tnum) {
 
 var trans = [{
         en: 'General',
-        pt: 'Geral',
-        es: 'Generalo',
-        fr: 'GÃ©nÃ©rale',
-        de: 'Generel',
-        cn: 'ä¸€èˆ¬',
-        ae: 'Ø­Ø¬Ù†Ø±Ø§Ù„ Ù„ÙˆØ§Ø¡'
+        np: 'सामान्य'
     }, {
         en: 'Dashboards,widgets & layout.',
         pt: 'PainÃ©is, widgets e layout.',

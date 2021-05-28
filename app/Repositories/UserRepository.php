@@ -4,11 +4,13 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Models\Admin\Role;
+use App\Models\Admin\Preference;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 use App\Contracts\UserRepositoryInterface;
+use App\Events\UserHasBeenRegistered;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -17,9 +19,9 @@ class UserRepository implements UserRepositoryInterface
     {
         $users = config('coderz.caching', true)
             ? (Cache::has('users') ? Cache::get('users') : Cache::rememberForever('users', function () {
-                return User::all();
+                return User::with('roles', 'profile')->get();
             }))
-            : User::all();
+            : User::with('roles', 'profile')->get();
 
         $roles = Cache::get('roles', Role::all(['id', 'name']));
 
@@ -44,10 +46,14 @@ class UserRepository implements UserRepositoryInterface
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
+        // User Registered Event
+        event(new UserHasBeenRegistered($user, $request->password));
         // Asigning Role
         $this->assignRole($user);
         // Creating Profile
         $user->profile()->create();
+        // Creating Preference
+        $this->attachPreference($user);
     }
 
     // User Show
@@ -87,6 +93,8 @@ class UserRepository implements UserRepositoryInterface
         $user->profile()->delete();
         // Deleting Attached Role
         $user->roles()->detach();
+        // Deleting Attached Preference
+        $user->preferences()->detach();
         $user->delete();
     }
 
@@ -111,6 +119,26 @@ class UserRepository implements UserRepositoryInterface
         if (request()->role) {
             $role = Role::where('id', request()->role)->first();
             $user->roles()->sync($role);
+        }
+    }
+
+    public function attachPreference($user)
+    {
+        $preferences = Preference::all();
+        if (isset($preferences)) {
+            foreach ($preferences as $preference) {
+                if (!isset($preference->roles)) {
+                    $user->preferences()->attach($preference->id, [
+                        'enabled' => $preference->active
+                    ]);
+                } else {
+                    if (array_intersect($user->roles->pluck('id')->toArray(), $preference->roles) != null) {
+                        $user->preferences()->attach($preference->id, [
+                            'enabled' => $preference->active
+                        ]);
+                    }
+                }
+            }
         }
     }
 }

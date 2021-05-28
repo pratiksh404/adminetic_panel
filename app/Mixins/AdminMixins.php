@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\EditorUploadController;
+use App\Http\Controllers\Admin\PreferenceController;
 use App\Http\Controllers\Admin\SettingController;
 
 class AdminMixins
@@ -19,7 +20,7 @@ class AdminMixins
         return function () {
             Route::group(['prefix' => config('adminetic.prefix', 'admin'), 'middleware' => config('adminetic.middleware')], function () {
 
-                $this->get('dashboard', [DashboardController::class, 'dashboard']);
+                $this->get('dashboard', [DashboardController::class, 'dashboard'])->name('home');
 
                 // Resource Controller
                 $this->resource('user', UserController::class);
@@ -37,6 +38,8 @@ class AdminMixins
                 $this->resource('permission', PermissionController::class);
 
                 $this->resource('setting', SettingController::class);
+
+                $this->resource('preference', PreferenceController::class);
 
 
                 /* ================================================= */
