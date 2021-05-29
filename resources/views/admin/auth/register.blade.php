@@ -82,6 +82,7 @@
                                 </div>
                                 <button class="btn btn-primary btn-block w-100" type="submit">Create Account</button>
                             </div>
+                            @include('admin.auth.layouts.socialite')
                             @if (Route::has('login'))
                                 <p class="mt-4 mb-0 text-center">Already have an account?<a class="ms-2"
                                         href="{{ route('login') }}">Sign

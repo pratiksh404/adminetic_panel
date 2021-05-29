@@ -12,7 +12,6 @@
                             <th>name</th>
                             <th>email</th>
                             <th>role</th>
-                            <th>status</th>
                             <th>Action</th>
                         </tr>
                     </thead>

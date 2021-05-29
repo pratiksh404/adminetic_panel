@@ -73,7 +73,7 @@
                         <tr>
                             <td><b>Active : </b></td>
                             <td><span
-                                    class="badge badge-{{ $profile->status ? 'success' : 'danger' }}">{{ $profile->status ? 'Active' : 'Inactive' }}</span>
+                                    class="badge badge-{{ $profile->getRawOriginal('status') ? 'success' : 'danger' }}">{{ $profile->getRawOriginal('status') ? 'Active' : 'Inactive' }}</span>
                             </td>
                         </tr>
                     </tbody>

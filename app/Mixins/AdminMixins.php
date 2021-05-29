@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\EditorUploadController;
 use App\Http\Controllers\Admin\PreferenceController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Auth\LoginController;
 
 class AdminMixins
 {

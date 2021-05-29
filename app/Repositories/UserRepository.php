@@ -59,7 +59,8 @@ class UserRepository implements UserRepositoryInterface
     // User Show
     public function userShow(User $user)
     {
-        return compact('user');
+        $profile = $user->profile;
+        return compact('user', 'profile');
     }
 
     // User Edit

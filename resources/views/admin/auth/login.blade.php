@@ -55,6 +55,7 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block w-100" type="submit">Sign in</button>
                             </div>
+                            @include('admin.auth.layouts.socialite')
                             @if (Route::has('register'))
                                 <p class="mt-4 mb-0 text-center">
                                     Don't have account?<a class="ms-2" href="{{ route('register') }}">Create

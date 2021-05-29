@@ -16,6 +16,7 @@
         type="image/x-icon">
     <title>{{ $title ?? ($setting->title ?? config('adminetic.name', 'Adminetic')) }}</title>
     {{-- ASSET LINKS --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">
     <!-- App css-->

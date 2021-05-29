@@ -67,7 +67,7 @@ if (!function_exists('getProfilePlaceholder')) {
     function getProfilePlaceholder($p = null)
     {
         $profile = $p ?? Auth::user()->profile;
-        return isset($profile->profile_pic) ? asset('storage/' . $profile->profile_pic) : asset('static/profile.jpg');
+        return isset($profile->profile_pic) ? (Illuminate\Support\Str::contains($profile->profile_pic, ['https://', 'http://']) ? $profile->profile_pic : asset('storage/' . $profile->profile_pic)) : asset('static/profile.jpg');
     }
 }
 
