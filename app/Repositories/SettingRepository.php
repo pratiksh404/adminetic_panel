@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Setting;
 use App\Http\Requests\SettingRequest;
 use Illuminate\Support\Facades\Cache;
+use Intervention\Image\Facades\Image;
 use App\Contracts\SettingRepositoryInterface;
 
 class SettingRepository implements SettingRepositoryInterface
@@ -72,7 +73,7 @@ class SettingRepository implements SettingRepositoryInterface
                         $key => $this->getValidationRule($setting)
                     ]);
 
-                    $this->store_setting_value($setting, $value);
+                    $this->store_setting_value($setting, $key, $value);
                 }
             }
         }
@@ -103,12 +104,21 @@ class SettingRepository implements SettingRepositoryInterface
         }
     }
 
-    private function store_setting_value(Setting $setting, $value)
+    private function store_setting_value(Setting $setting, $key, $value)
     {
         if ($setting->getRawOriginal('setting_type') == 1 || $setting->getRawOriginal('setting_type') == 10) {
             $setting->update([
                 'string_value' => $value
             ]);
+            if ($setting->getRawOriginal('setting_type') == 10) {
+                if (request()->has($key)) {
+                    $setting->update([
+                        'string_value' => $value->store('admin/setting', 'public')
+                    ]);
+                    $image = Image::make($value->getRealPath());
+                    $image->save(public_path('storage/' . $setting->string_value));
+                }
+            }
         } else if ($setting->getRawOriginal('setting_type') == 2 || $setting->getRawOriginal('setting_type') == 6 || $setting->getRawOriginal('setting_type') == 7) {
             $setting->update([
                 'integer_value' => $value

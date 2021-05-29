@@ -5,7 +5,7 @@
                 <label
                     for="{{ $setting->custom->id ?? $setting->getRawOriginal('setting_name') }}">{{ $setting->setting_name }}</label>
                 <br>
-                <input type="file" name="{{ $setting->custom->id ?? $setting->getRawOriginal('setting_name') }}"
+                <input type="file" name="{{ $setting->getRawOriginal('setting_name') }}"
                     class="{{ $setting->custom->class ?? $setting->getRawOriginal('setting_name') }}"
                     id="{{ $setting->custom->id ?? $setting->getRawOriginal('setting_name') }}">
                 <p class="help-block">Blade directive : <b>
@@ -16,7 +16,7 @@
         <div class="col-lg-4">
             @isset($setting->string_value)
                 <img src="{{ asset('storage/' . $setting->string_value) }}" alt="{{ $setting->setting_name }}"
-                    class="img-fluis">
+                    class="img-fluid">
             @endisset
         </div>
     </div>

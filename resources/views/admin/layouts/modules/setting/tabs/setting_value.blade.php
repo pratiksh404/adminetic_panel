@@ -1,5 +1,5 @@
     @isset($setting_grouped)
-        <form action="{{ route('setting_store') }}" method="POST">
+        <form action="{{ route('setting_store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-sm-3 tabs-responsive-side">
